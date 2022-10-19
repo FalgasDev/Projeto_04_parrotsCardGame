@@ -1,0 +1,47 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #EEF9BF;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 872px;
+}
+
+h1 {
+    font-size: 56px;
+    letter-spacing: -0.004em;
+    margin-top: 40px;
+    color: #75B79E;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    width: inherit;
+    margin-top: 47px;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 117px;
+    height: 146px;
+    background-color: #A7E9AF;
+    border-radius: 5px;
+    border: 1px solid #99CEA8;
+    margin-right: 34px;
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+}
