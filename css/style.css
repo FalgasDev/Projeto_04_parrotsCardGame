@@ -25,7 +25,7 @@ body {
     font-size: 20px;
 }
 
-.container-principal {
+.principal-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,7 +102,7 @@ p {
 }
 
 @media (min-width: 1110px) {
-    .container-principal {
+    .principal-container {
         width: 990px;
     }
 

@@ -37,23 +37,35 @@ for (let i = 0; numberOfCards > i; i++) {
 function flipCard(element) {
     const backCard = element.querySelector('.back')
     const frontCard = element.querySelector('.front')
+    let rematch;
     count++
     frontCard.classList.remove('front')
     frontCard.classList.add('turned')
     backCard.classList.add('rotate')
     const matchedCards = document.querySelectorAll('.match')
     let flipedCards = document.querySelectorAll('.turned')
-    const first = flipedCards[0].querySelector('.turned p')
+    const firstCardSelected = flipedCards[0].querySelector('.turned p')
     if (flipedCards.length === 2) {
-        const second = flipedCards[1].querySelector('.turned p') 
-        if (first.innerHTML == second.innerHTML) {
+        const secondCardSelected = flipedCards[1].querySelector('.turned p') 
+        if (firstCardSelected.innerHTML == secondCardSelected.innerHTML) {
             flipedCards[0].classList.add('match')
             flipedCards[1].classList.add('match')
             flipedCards[0].classList.remove('turned')
             flipedCards[1].classList.remove('turned')
             if (matchedCards.length == pack.length - 2) {
-                setTimeout(() => {alert(`Você ganhou em ${count} jogadas!! \nEssa rodada durou ${seconds.innerHTML} segundos`)}, 500)
+                setTimeout(() => {alert(`Você ganhou em ${count} jogadas!! \nEssa partida durou ${seconds.innerHTML} segundos`)}, 500)
                 clearInterval(interval)
+                setTimeout(() => {
+                    rematch = prompt('Gostaria de reiniciar a partida?')
+                    while (rematch !== 'sim' && rematch !== 'não') {
+                        alert('Insira sim ou não, sem nenhuma variação')
+                        rematch = prompt('Gostaria de reiniciar a partida?')
+                    }
+
+                    if (rematch === 'sim') {
+                        location.reload(true)
+                    }
+                }, 1000)
             }
         } else {
             setTimeout(() => {
@@ -73,7 +85,6 @@ function shuffle() {
 }
 
 function timer() {
-    console.log()
     interval = setInterval(() => {
         seconds.innerHTML++
     }, 1000)
