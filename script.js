@@ -3,15 +3,15 @@ const pack = [];
 let count = 0
 let interval;
 const seconds = document.querySelector('.timer h2')
+const plays = document.querySelector('.plays h2')
 
 cards.sort(shuffle)
 
-let numberOfCards = Number(prompt('Quantas cartas você quer?'));
+let numberOfCards = Number(prompt('Quantas cartas você quer?\ninsira um número par de 4 a 14'));
 const card = document.querySelector('.cards');
 
 while (numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 != 0) {
-    alert('insira um número par de 4 a 14 por favor!')
-    numberOfCards = Number(prompt('Quantas cartas você quer?'));
+    numberOfCards = Number(prompt('Quantas cartas você quer?\ninsira um número par de 4 a 14'));
 }
 
 for (let i = 0; i < (numberOfCards / 2); i++) {
@@ -39,6 +39,7 @@ function flipCard(element) {
     const frontCard = element.querySelector('.front')
     let rematch;
     count++
+    plays.innerHTML = count
     frontCard.classList.remove('front')
     frontCard.classList.add('turned')
     backCard.classList.add('rotate')
@@ -53,13 +54,12 @@ function flipCard(element) {
             flipedCards[0].classList.remove('turned')
             flipedCards[1].classList.remove('turned')
             if (matchedCards.length == pack.length - 2) {
-                setTimeout(() => {alert(`Você ganhou em ${count} jogadas!! \nEssa partida durou ${seconds.innerHTML} segundos`)}, 500)
+                setTimeout(() => {alert(`Parabéns!!\nVocê ganhou em ${count} jogadas!! \nEssa partida durou: ${seconds.innerHTML} segundos`)}, 500)
                 clearInterval(interval)
                 setTimeout(() => {
-                    rematch = prompt('Gostaria de reiniciar a partida?')
+                    rematch = prompt('Gostaria de reiniciar a partida? (sim ou não)')
                     while (rematch !== 'sim' && rematch !== 'não') {
-                        alert('Insira sim ou não, sem nenhuma variação')
-                        rematch = prompt('Gostaria de reiniciar a partida?')
+                        rematch = prompt('Gostaria de reiniciar a partida? (sim ou não)')
                     }
 
                     if (rematch === 'sim') {

@@ -8,9 +8,8 @@ body {
     justify-content: center;
 }
 
-.timer {
+.timer, .plays {
     position: fixed;
-    right: 20px;
     top: 10px;
     width: 50px;
     background-color: rgba(117, 117, 117, 0.062);
@@ -19,9 +18,18 @@ body {
     justify-content: space-between;
     color: #75B79E;
     align-items: center;
+    transition: all 2s;
 }
 
-.timer ion-icon {
+.timer {
+    right: 20px;
+}
+
+.plays {
+    left: 20px;
+}
+
+.timer ion-icon, .plays ion-icon {
     font-size: 20px;
 }
 
@@ -98,6 +106,12 @@ p {
 
     .cards {
         margin-left: 70px;
+    }
+
+    .timer, .plays {
+        top: 100px;
+        transition: ease-in;
+        transition: all 2s;
     }
 }
 
