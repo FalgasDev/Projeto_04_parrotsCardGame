@@ -8,6 +8,23 @@ body {
     justify-content: center;
 }
 
+.timer {
+    position: fixed;
+    right: 20px;
+    top: 10px;
+    width: 50px;
+    background-color: rgba(117, 117, 117, 0.062);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    color: #75B79E;
+    align-items: center;
+}
+
+.timer ion-icon {
+    font-size: 20px;
+}
+
 .container-principal {
     display: flex;
     flex-direction: column;

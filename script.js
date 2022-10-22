@@ -1,6 +1,8 @@
 const cards = ['bobrossparrot', 'explodyparrot', 'fiestaparrot', 'metalparrot', 'revertitparrot', 'tripletsparrot', 'unicornparrot'];
 const pack = [];
 let count = 0
+let interval;
+const seconds = document.querySelector('.timer h2')
 
 cards.sort(shuffle)
 
@@ -50,7 +52,8 @@ function flipCard(element) {
             flipedCards[0].classList.remove('turned')
             flipedCards[1].classList.remove('turned')
             if (matchedCards.length == pack.length - 2) {
-                setTimeout(() => {alert(`Você ganhou em ${count}`)}, 500)
+                setTimeout(() => {alert(`Você ganhou em ${count} jogadas!! \nEssa rodada durou ${seconds.innerHTML} segundos`)}, 500)
+                clearInterval(interval)
             }
         } else {
             setTimeout(() => {
@@ -68,3 +71,12 @@ function flipCard(element) {
 function shuffle() { 
 	return Math.random() - 0.5; 
 }
+
+function timer() {
+    console.log()
+    interval = setInterval(() => {
+        seconds.innerHTML++
+    }, 1000)
+}
+
+timer()
