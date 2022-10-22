@@ -35,47 +35,49 @@ for (let i = 0; numberOfCards > i; i++) {
 }
 
 function flipCard(element) {
-    const backCard = element.querySelector('.back')
-    const frontCard = element.querySelector('.front')
-    let rematch;
-    count++
-    plays.innerHTML = count
-    frontCard.classList.remove('front')
-    frontCard.classList.add('turned')
-    backCard.classList.add('rotate')
-    const matchedCards = document.querySelectorAll('.match')
-    let flipedCards = document.querySelectorAll('.turned')
-    const firstCardSelected = flipedCards[0].querySelector('.turned p')
-    if (flipedCards.length === 2) {
-        const secondCardSelected = flipedCards[1].querySelector('.turned p') 
-        if (firstCardSelected.innerHTML == secondCardSelected.innerHTML) {
-            flipedCards[0].classList.add('match')
-            flipedCards[1].classList.add('match')
-            flipedCards[0].classList.remove('turned')
-            flipedCards[1].classList.remove('turned')
-            if (matchedCards.length == pack.length - 2) {
-                setTimeout(() => {alert(`Parabéns!!\nVocê ganhou em ${count} jogadas!! \nEssa partida durou: ${seconds.innerHTML} segundos`)}, 500)
-                clearInterval(interval)
-                setTimeout(() => {
-                    rematch = prompt('Gostaria de reiniciar a partida? (sim ou não)')
-                    while (rematch !== 'sim' && rematch !== 'não') {
+    if (document.querySelectorAll('.turned').length < 2) {
+        const backCard = element.querySelector('.back')
+        const frontCard = element.querySelector('.front')
+        let rematch;
+        frontCard.classList.remove('front')
+        frontCard.classList.add('turned')
+        backCard.classList.add('rotate')
+        count++
+        plays.innerHTML = count
+        const matchedCards = document.querySelectorAll('.match')
+        let flipedCards = document.querySelectorAll('.turned')
+        const firstCardSelected = flipedCards[0].querySelector('.turned p')
+        if (flipedCards.length === 2) {
+            const secondCardSelected = flipedCards[1].querySelector('.turned p') 
+            if (firstCardSelected.innerHTML == secondCardSelected.innerHTML) {
+                flipedCards[0].classList.add('match')
+                flipedCards[1].classList.add('match')
+                flipedCards[0].classList.remove('turned')
+                flipedCards[1].classList.remove('turned')
+                if (matchedCards.length == pack.length - 2) {
+                    setTimeout(() => {alert(`Parabéns!!\nVocê ganhou em ${count} jogadas!! \nEssa partida durou: ${seconds.innerHTML} segundos`)}, 500)
+                    clearInterval(interval)
+                    setTimeout(() => {
                         rematch = prompt('Gostaria de reiniciar a partida? (sim ou não)')
-                    }
+                        while (rematch !== 'sim' && rematch !== 'não') {
+                            rematch = prompt('Gostaria de reiniciar a partida? (sim ou não)')
+                        }
 
-                    if (rematch === 'sim') {
-                        location.reload(true)
-                    }
+                        if (rematch === 'sim') {
+                            location.reload(true)
+                        }
+                    }, 1000)
+                }
+            } else {
+                setTimeout(() => {
+                    flipedCards[0].classList.add('front')
+                    flipedCards[0].parentNode.querySelector('.back').classList.remove('rotate')
+                    flipedCards[1].classList.add('front')
+                    flipedCards[1].parentNode.querySelector('.back').classList.remove('rotate')
+                    flipedCards[0].classList.remove('turned')
+                    flipedCards[1].classList.remove('turned')
                 }, 1000)
             }
-        } else {
-            setTimeout(() => {
-                flipedCards[0].classList.add('front')
-                flipedCards[0].parentNode.querySelector('.back').classList.remove('rotate')
-                flipedCards[1].classList.add('front')
-                flipedCards[1].parentNode.querySelector('.back').classList.remove('rotate')
-            }, 1000)
-            flipedCards[0].classList.remove('turned')
-            flipedCards[1].classList.remove('turned')
         }
     }
 }
