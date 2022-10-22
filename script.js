@@ -1,5 +1,6 @@
 const cards = ['bobrossparrot', 'explodyparrot', 'fiestaparrot', 'metalparrot', 'revertitparrot', 'tripletsparrot', 'unicornparrot'];
-const cheap = [];
+const pack = [];
+let count = 0
 
 cards.sort(shuffle)
 
@@ -12,19 +13,20 @@ while (numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 != 0) {
 }
 
 for (let i = 0; i < (numberOfCards / 2); i++) {
-    cheap.push(cards[i])
-    cheap.push(cards[i])
+    pack.push(cards[i])
+    pack.push(cards[i])
 }
 
-cheap.sort(shuffle);
+pack.sort(shuffle);
 for (let i = 0; numberOfCards > i; i++) {
     card.innerHTML += `
     <div class="card" onclick="flipCard(this)">
-        <div class="front hidden">
-            <img src="./images/${cheap[i]}.gif">
-        </div>
-        <div class="back">
+        <div class="back face">
             <img src="./images/back.png">
+        </div>
+        <div class="front face">
+            <img src="./images/${pack[i]}.gif">
+            <p>${pack[i]}</p>
         </div>
     </div>
     `
@@ -33,11 +35,36 @@ for (let i = 0; numberOfCards > i; i++) {
 function flipCard(element) {
     const backCard = element.querySelector('.back')
     const frontCard = element.querySelector('.front')
-    backCard.classList.add('hidden')
-    frontCard.classList.remove('hidden')
+    count++
+    frontCard.classList.remove('front')
+    frontCard.classList.add('turned')
+    backCard.classList.add('rotate')
+    const matchedCards = document.querySelectorAll('.match')
+    let flipedCards = document.querySelectorAll('.turned')
+    const first = flipedCards[0].querySelector('.turned p')
+    if (flipedCards.length === 2) {
+        const second = flipedCards[1].querySelector('.turned p') 
+        if (first.innerHTML == second.innerHTML) {
+            flipedCards[0].classList.add('match')
+            flipedCards[1].classList.add('match')
+            flipedCards[0].classList.remove('turned')
+            flipedCards[1].classList.remove('turned')
+            if (matchedCards.length == pack.length - 2) {
+                setTimeout(() => {alert(`Você ganhou em ${count}`)}, 500)
+            }
+        } else {
+            setTimeout(() => {
+                flipedCards[0].classList.add('front')
+                flipedCards[0].parentNode.querySelector('.back').classList.remove('rotate')
+                flipedCards[1].classList.add('front')
+                flipedCards[1].parentNode.querySelector('.back').classList.remove('rotate')
+            }, 2000)
+            flipedCards[0].classList.remove('turned')
+            flipedCards[1].classList.remove('turned')
+        }
+    }
 }
 
 function shuffle() { 
 	return Math.random() - 0.5; 
 }
-
