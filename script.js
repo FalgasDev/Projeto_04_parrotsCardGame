@@ -58,7 +58,7 @@ function flipCard(element) {
                 flipedCards[0].parentNode.querySelector('.back').classList.remove('rotate')
                 flipedCards[1].classList.add('front')
                 flipedCards[1].parentNode.querySelector('.back').classList.remove('rotate')
-            }, 2000)
+            }, 1000)
             flipedCards[0].classList.remove('turned')
             flipedCards[1].classList.remove('turned')
         }
